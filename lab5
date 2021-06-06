@@ -1,0 +1,46 @@
+#include<iostream>
+#include<fstream>
+#include<cstdlib>
+#include <time.h>
+
+using namespace std;
+
+void random_array(int arr[], int n){
+	srand(time(NULL));	// without repetition of the sequence between program runs
+	for(int i = 0; i < n; i++){
+		arr[i]=rand()%100;  //Generate number between 0 to 99
+	}
+}
+
+void out_put(int arr[], int n){
+	for(int i = 0; i < n; i++){
+		cout << "Element number "<<i+1<<" : " << arr[i] << endl;
+	}
+}
+
+int main(){
+	int n;
+	cin >> n;
+	int arr[n];
+	random_array(arr,n);
+	out_put(arr,n);
+
+	//Create 2 file to save even and odd numbers
+	
+	ofstream even ("C:\\Users\\Admin\\Desktop\\hocvefile\\even.txt");
+    ofstream odd ("C:\\Users\\Admin\\Desktop\\hocvefile\\odd.txt");
+	even << "Even numbers in array is: " << endl;	//Chetnoye chislo v massive
+	odd  << "Odd numbers in array is: "  << endl;	//Nechetnoye chislo v massive
+    for(int i = 0; i <= n; i++){
+        if( arr[i] % 2 == 0){
+            even << arr[i];
+            even << " "  ;
+        }
+        else{
+        	odd << arr[i];
+        	odd << " " ;
+		}
+    }
+    even.close();
+	odd.close();
+}
